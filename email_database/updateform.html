@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+  <title>Form Example</title>
+</head>
+<body>
+  <form name="submit-to-google-sheet">
+    <input name="email" type="email" placeholder="Email" required>
+    <button type="submit" >Send</button>
+  </form>   
+<h2>Email List</h2>
+  <table id="email-table">
+    <thead>
+      <tr>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSzSKC097x8i3D8ROm-Bl0cFkIJuEJvxAubUci0hIzRDpBnUaDRuIGdXlksPz6TDsHwpIhal0oaCEhB/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" height="500px"></iframe>
+  
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzUs30K5jR_DsFVJIccEGdSz8MagyidBmJBzaPKkG7_ACD9Fka9M2Uk6H4kwRUaVlEe/exec';
+    const form = document.forms['submit-to-google-sheet'];
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message));
+    });
+    // for display list 
+   
+   
+   
+   
+  </script>
+
+  
+
+</body>
+</html>
